@@ -1,62 +1,45 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'DoctorItem.dart';
+import 'dummy_doctors.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(HomeScreen());
 }
 
-class MyApp extends StatelessWidget {
+class HomeScreen extends StatelessWidget{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return MaterialApp(
-    theme: ThemeData(
-       primarySwatch: Colors.blue,
-       visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: LoginScreen(title: 'We care for your Mental Health!'),
-    );
-  }
-}
-
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  LoginScreenState createState() => LoginScreenState();
-}
-
-class LoginScreenState extends State<LoginScreen> {
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-       title: Text(widget.title),
-      ),
-      body: Center(
-        
-        child:ListView(
-         
-          padding : EdgeInsets.symmetric(vertical: 100, horizontal: 50),
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(vertical:10),
-              child: Text(
-              'You are not logged in',
-              ),
-            ),
-            MaterialButton(
-              color: Colors.blueAccent,
-              onPressed: () => null, // Change this Param for google login
-              child: Text(
-              'Log in With Google',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            ),
-          ],
-        ),
+      debugShowCheckedModeBanner: false,
+      home:Scaffold(
+      appBar: AppBar(title: Text("Choose the right friend for you!"),),
+      body: ListView.separated(
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: 7,
+                        itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                        padding: EdgeInsets.all(20),
+                       child:Expanded(
+                         child:ListView(
+                         children: dummy.map((doctorData) {
+                     return DoctorItem(doctorData.id,doctorData.title);
+                     }
+                     ).toList(),
+                       )
+                       )
+                       );
+                        },
+                         separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            height: 10,
+                          );
+                        },
       )
-    );
+      )
+      );
   }
+                        
 }

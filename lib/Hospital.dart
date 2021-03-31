@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Date extends StatelessWidget {
-  final String dateText;
-  Date(this.dateText);
+class Hospital extends StatelessWidget {
+  final String hospital;
+  Hospital(this.hospital);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,11 +10,11 @@ class Date extends StatelessWidget {
       margin: EdgeInsets.all(5),
       child:
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        Icon(Icons.calendar_today),
+  
         SizedBox(width: 10),
         Text(
-          "Date: " + dateText,
-          style: TextStyle(fontSize: 20,color: Colors.black, fontWeight:FontWeight.bold),
+          "Currently at: " + hospital,
+          style: TextStyle(fontSize: 20,color: Colors.black,fontWeight:FontWeight.bold),
         ),
       ]),
     );

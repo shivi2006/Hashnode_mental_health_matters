@@ -14,7 +14,7 @@ class Time extends StatelessWidget {
         SizedBox(width: 10),
         Text(
           "Time: " + timeText,
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20, color: Colors.black, fontWeight:FontWeight.bold),
         ),
       ]),
     );
